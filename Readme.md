@@ -31,11 +31,11 @@ The Natspec commenting format follows the Doxygen notation style:
 and this are how they look like : 
 
 ``` 
-///  Natspec single line comment
+///  Natspec single line commenting
 
 /**
 Natspec multi-line
-comment 
+commenting
 */
 ```
 
