@@ -38,5 +38,107 @@ Natspec multi-line
 commenting
 */
 ```
+## so let us get started and write at least a page of code
 
+- Create a new directory and go inside it : ``$ mkdir Natspec-comms && cd Natspec-comms``
 
+- Create a new Solidity file :`` $ nano natspec.sol``
+
+- Paste the smart contract code below: : 
+
+```pragma solidity ^0.5.0;
+/// @title A sample contract to learn
+/// @author John Oseni
+/// @notice you can use this contract to learn alone
+/// @dev Contract under development to enable floating point
+contract Geometry {
+    
+    struct Triangle {
+        uint side_a;
+        uint side_b;
+        uint hypothenuse;
+    }
+    
+    /// @notice Math function to calculate square root
+    /// @dev Not working with decimal numbers
+    /// @param x The number to calculate the square root of
+    /// @return y The square root of x
+    function sqrt(uint x) internal pure returns (uint y) {
+            uint z = (x + 1) / 2;
+            y = x;
+            while (z < y) {
+                y = z;
+                z = (x / z + z) / 2;
+            }
+        }
+    
+    /// @notice Calculate the hypothenuse length based on x and y
+    /// @dev Not working as it returns integers and not float
+    /// @param _a Side 1
+    /// @param _b Side 2
+    /// @return uint the hypothenuse length
+    function calculateHypothenuse(uint _a, uint _b) public pure returns (uint) {
+        return sqrt((_a * _a) + (_b * _b));
+    }
+    
+    Triangle public my_triangle;
+    
+    /// @author John oseni
+    /// @notice Enter the two legs of your right angle triangle
+    /// @dev This function modifies the state of the variable `my_triangle` and use `calculateHypothenuse()` function
+    /// @param _a Side 1
+    /// @param _b Side 2
+    /// @return string return to user a custom success message
+    function createTriangle(uint _a, uint _b) public returns (string memory) {
+        my_triangle = Triangle ({
+            side_a: _a,
+            side_b: _b,
+            hypothenuse: calculateHypothenuse(_a, _b)
+        });
+        return "new triangle created";
+    }
+    
+    
+}
+```
+
+## ABI outputting
+
+- Run the following command on the CLI of your editor: 
+
+`` solc — devdoc natspec.sol ``
+
+You should obtain the following output down here : 
+
+``` 
+
+{
+  "author" : "John Oseni",
+  "details" : "All function calls are currently implemented without side effects",
+  "methods" :
+  {
+    "calculateHypothenuse(uint256,uint256)" :
+    {
+      "details" : "Not working as it returns integers and not float",
+      "params" :
+      {
+        "_a" : "Side 1",
+        "_b" : "Side 2"
+      },
+      "return" : "uint the hypothenuse length"
+    },
+    "createTriangle(uint256,uint256)" :
+    {
+      "author" : "John Oseni",
+      "details" : "This function modifies the state of the variable `my_triangle` and use `calculateHypothenuse()` function",
+      "params" :
+      {
+        "_a" : "Side 1",
+        "_b" : "Side 2"
+      },
+      "return" : "string return to user a custom success message"
+    }
+  },
+  "title" : "A sample contract to learn"
+} 
+```
