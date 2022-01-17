@@ -1,1 +1,1 @@
-# How to build Dapps (Smart contracts)
+# How to write smart contracts
