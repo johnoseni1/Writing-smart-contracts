@@ -4,3 +4,13 @@
 - ## write Comments in Solidity?
 
 You can write single line comments and multi-line comments in solidity using // and /** ... */
+
+samples like 
+
+``` 
+    // Single Line comment in solidity
+
+    /* 
+    Multi-line comment in solidity
+    */
+```
