@@ -142,3 +142,10 @@ You should obtain the following output down here :
   "title" : "A sample contract to learn"
 } 
 ```
+
+
+more coming soon, please 
+
+# Contributing 
+
+Feel free to contribute and also make a pull request😊😊😊😊
